@@ -69,7 +69,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
-        android:text="Before you can start using online platform, please read our teams of service & accept it"
+        android:text="Before you can start using online platform, please read our teams of service and accept it"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -103,7 +103,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:background="#3F83E8"
-        android:text="I have read & agree to above terms"
+        android:text="I have read and agree to above terms"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
