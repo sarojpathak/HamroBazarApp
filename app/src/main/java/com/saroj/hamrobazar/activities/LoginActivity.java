@@ -1,8 +1,10 @@
-package com.saroj.hamrobazar;
+package com.saroj.hamrobazar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.saroj.hamrobazar.R;
 
 public class LoginActivity extends AppCompatActivity {
 
