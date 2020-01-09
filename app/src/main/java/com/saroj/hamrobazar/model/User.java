@@ -4,20 +4,21 @@ import android.content.Intent;
 
 public class User {
     private String fullName;
-    private String email;
+    private String username;
     private String password;
     private Integer phone;
-    private Intent mobilePhone;
+    private Integer mobilePhone;
     private String street;
     private String area;
     private String city;
     private Boolean newsletter;
     private Boolean hidePhone;
     private Boolean agree;
+    private String image;
 
-    public User(String fullName, String email, String password, Integer phone, Intent mobilePhone, String street, String area, String city, Boolean newsletter, Boolean hidePhone, Boolean agree) {
+    public User(String fullName, String username, String password, Integer phone, Integer mobilePhone, String street, String area, String city, Boolean newsletter, Boolean hidePhone, Boolean agree, String image) {
         this.fullName = fullName;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.phone = phone;
         this.mobilePhone = mobilePhone;
@@ -27,6 +28,7 @@ public class User {
         this.newsletter = newsletter;
         this.hidePhone = hidePhone;
         this.agree = agree;
+        this.image = image;
     }
 
     public String getFullName() {
@@ -37,12 +39,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -61,11 +63,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Intent getMobilePhone() {
+    public Integer getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(Intent mobilePhone) {
+    public void setMobilePhone(Integer mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
@@ -115,5 +117,13 @@ public class User {
 
     public void setAgree(Boolean agree) {
         this.agree = agree;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

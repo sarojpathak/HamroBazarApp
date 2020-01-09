@@ -1,35 +1,44 @@
 package com.saroj.hamrobazar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.saroj.hamrobazar.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity   {
+
+   private Button btnSignUp;
     ImageView icon;
     Dialog myDialog;
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater menuInflater=getMenuInflater();
+        super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu,menu);
         return true;
     }
+
     ViewFlipper vflipper;
     private RecyclerView recyclerView,recyclerViewSecond;
 
@@ -55,44 +64,75 @@ public class DashboardActivity extends AppCompatActivity {
                 ShowPopup(v);
             }
         });
+
+
         myDialog= new Dialog(this);
 
 
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        final Toolbar  toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        recyclerView=findViewById(R.id.recyclerView);
-
-        List<TreandingAds> treandingAdsList=new ArrayList<>();
-        treandingAdsList.add(new TreandingAds("Samsung Phone","40000",R.drawable.bike,"Brand New"));
-
-        TrendingAdsAdapter trendingAdsAdapter=new TrendingAdsAdapter(this,treandingAdsList);
-        recyclerView.setAdapter(trendingAdsAdapter);
-        recyclerView.setLayoutManager(
-                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
-
-        recyclerViewSecond=findViewById(R.id.recyclerViewSecond);
-
-        List<ListedAds> listedAdsList=new ArrayList<>();
-        listedAdsList.add(new ListedAds("Samsung Phone","40000",R.drawable.bike,"Brand New"));
-
-        ListedAdsAdapter listedAdsAdapter=new ListedAdsAdapter(this,listedAdsList);
-        recyclerViewSecond.setAdapter(listedAdsAdapter);
-        recyclerViewSecond.setLayoutManager(
-                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
 
 
-        int images[]={R.drawable.yamaha,R.drawable.car,R.drawable.bike,R.drawable.house,R.drawable.furnitures,R.drawable.music};
-
-        vflipper=findViewById(R.id.vflipper);
+        btnSignUp =  toolbar.findViewById(R.id.btnSignUp);
 
 
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                toolbar.dismissPopupMenus();
+////                Intent intent = new Intent(DashboardActivity.this, SignupActivity.class);
+////                startActivity(intent);
+//
+//            }
+//        });
 
-        for (int image:images)
-        {
-            flipperimages(image);
-        }
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(DashboardActivity.this, SignupActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
+
+
+//
+//        recyclerView=findViewById(R.id.recyclerView);
+//
+//        List<TreandingAds> treandingAdsList=new ArrayList<>();
+//        treandingAdsList.add(new TreandingAds("Samsung Phone","40000",R.drawable.bike,"Brand New"));
+//
+//        TrendingAdsAdapter trendingAdsAdapter=new TrendingAdsAdapter(this,treandingAdsList);
+//        recyclerView.setAdapter(trendingAdsAdapter);
+//        recyclerView.setLayoutManager(
+//                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
+//
+//        recyclerViewSecond=findViewById(R.id.recyclerViewSecond);
+//
+//        List<ListedAds> listedAdsList=new ArrayList<>();
+//        listedAdsList.add(new ListedAds("Samsung Phone","40000",R.drawable.bike,"Brand New"));
+//
+//        ListedAdsAdapter listedAdsAdapter=new ListedAdsAdapter(this,listedAdsList);
+//        recyclerViewSecond.setAdapter(listedAdsAdapter);
+//        recyclerViewSecond.setLayoutManager(
+//                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
+//
+//
+//        int images[]={R.drawable.yamaha,R.drawable.car,R.drawable.bike,R.drawable.house,R.drawable.furnitures,R.drawable.music};
+//
+//        vflipper=findViewById(R.id.vflipper);
+//
+//
+//
+//        for (int image:images)
+//        {
+//            flipperimages(image);
+//        }
     }
 
     private void ShowPopup(View v) {
