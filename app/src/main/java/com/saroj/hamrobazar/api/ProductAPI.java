@@ -18,7 +18,6 @@ import retrofit2.http.Part;
 
 public interface ProductAPI {
 
-
     @GET("products/")
-    Call<Product> getProductDetails(@Header("Authorization")String token);
+    Call <Product> getProductDetails();
 }
