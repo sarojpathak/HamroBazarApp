@@ -214,8 +214,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private void signUp() {
 
-
-
         String fullName = etFullname.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPwd.getText().toString();

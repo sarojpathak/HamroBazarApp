@@ -85,7 +85,7 @@
             android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:focusableInTouchMode="true"
-            android:text="Register Now"
+            android:text="@string/register"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="#32baba"

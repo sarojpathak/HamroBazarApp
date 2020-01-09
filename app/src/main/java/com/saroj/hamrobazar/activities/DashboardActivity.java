@@ -61,21 +61,21 @@ public class DashboardActivity extends AppCompatActivity   {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowPopup(v);
+                Intent intent = new Intent(DashboardActivity.this,LoginActivity.class);
+                startActivity(intent);
+//                ShowPopup(v);
             }
         });
 
-
-        myDialog= new Dialog(this);
-
-
-        final Toolbar  toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
+//
+//        myDialog= new Dialog(this);
+//
+//
+//        final Toolbar  toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
 
-        btnSignUp =  toolbar.findViewById(R.id.btnSignUp);
+
 
 
 //        btnSignUp.setOnClickListener(new View.OnClickListener() {
