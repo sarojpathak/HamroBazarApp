@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -117,12 +119,17 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean validEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
+    }
+
     private boolean validate() {
         boolean status=true;
-        if(etEmail.getText().toString().length()==0
-        ){
-            etEmail.setError("Enter your email address");
-            status=false;
+        if (!validEmail(etEmail.getText().toString())) {
+            etEmail.setError("Enter Email address");
+            status = false;
         }
         if(etFullname.getText().toString().length()==0){
             etFullname.setError("Enter your full name");
@@ -250,6 +257,8 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(SignupActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SignupActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
 
             @Override

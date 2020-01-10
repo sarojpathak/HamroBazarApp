@@ -42,7 +42,6 @@ public class DashboardActivity extends AppCompatActivity {
     private Button btnSignUp;
     ImageView icon;
     Dialog myDialog;
-//    String imgPath="";
 
 
     @Override
@@ -80,6 +79,8 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         int images[] = {R.drawable.yamaha, R.drawable.car, R.drawable.bike, R.drawable.house, R.drawable.furnitures, R.drawable.music};
 
