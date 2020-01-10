@@ -74,6 +74,7 @@ public class DashboardActivity extends AppCompatActivity {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadCurrentUser();
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
@@ -94,9 +95,6 @@ public class DashboardActivity extends AppCompatActivity {
         //recycleview first
         recyclerView = findViewById(R.id.recyclerView);
 
-        LinearLayoutManager manager = new LinearLayoutManager(DashboardActivity.this);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setHasFixedSize(true);
         ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
         Call<List<Product>> listCall = productAPI.getRecentProduct();
         listCall.enqueue(new Callback<List<Product>>() {

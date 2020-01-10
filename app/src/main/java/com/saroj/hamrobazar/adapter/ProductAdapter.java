@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.saroj.hamrobazar.R;
 import com.saroj.hamrobazar.model.Product;
+import com.saroj.hamrobazar.url.Url;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,10 +39,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Viewhold
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
 
         Product product = productList.get(position);
-        holder.imgProduct.setImageResource(product.getImage());
         holder.tvName.setText(product.getName());
         holder.tvCondition.setText(product.getType());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(product.getPrice() +"");
+
+        String image=product.getImage();
+        String imgPath = Url.imagePath + image;
+        Picasso.get().load(imgPath).into(holder.imgProduct);
     }
 
     @Override
