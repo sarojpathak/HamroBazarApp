@@ -21,6 +21,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Viewhold
     Context context;
     List<Product> productList;
 
+
     public ProductAdapter(Context context, List<Product> productList) {
         this.context = context;
         this.productList = productList;
@@ -57,9 +58,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Viewhold
     public class Viewholder extends RecyclerView.ViewHolder {
         ImageView imgProduct;
         TextView tvName, tvPrice, tvCondition;
+        protected  Boolean popular;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-
             imgProduct = itemView.findViewById(R.id.imageAd);
             tvName = itemView.findViewById(R.id.tvAdName);
             tvPrice = itemView.findViewById(R.id.tvAdPrice);

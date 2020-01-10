@@ -68,13 +68,12 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+//        loadCurrentUser();
 
         icon = findViewById(R.id.icon);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadCurrentUser();
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
@@ -94,18 +93,25 @@ public class DashboardActivity extends AppCompatActivity {
 
         //recycleview first
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerViewSecond = findViewById(R.id.recyclerViewSecond);
 
         ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
         Call<List<Product>> listCall = productAPI.getRecentProduct();
         listCall.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 List<Product> product = response.body();
 
                 ProductAdapter productAdapter = new ProductAdapter(DashboardActivity.this, product);
-
                 recyclerView.setAdapter(productAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
+                recyclerViewSecond.setAdapter(productAdapter);
+                recyclerViewSecond.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
 
             }
 

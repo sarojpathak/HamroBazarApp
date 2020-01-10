@@ -4,12 +4,12 @@ import java.sql.Array;
 
 public class Product {
     private String name;
-    private Integer price;
+    private int price;
     private String type;
     private Boolean popular;
     private String image;
 
-    public Product(String name, Integer price, String type, Boolean popular, String image) {
+    public Product(String name, int price, String type, Boolean popular, String image) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -25,11 +25,11 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -17,7 +17,7 @@
                 android:id="@+id/tvAdName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 />
             <ImageView
                 android:id="@+id/imageAd"
@@ -28,13 +28,13 @@
                 android:id="@+id/tvAdPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 />
             <TextView
                 android:id="@+id/tvProductType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 />
         </LinearLayout>
 

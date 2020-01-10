@@ -6,8 +6,8 @@ public class User {
     private String fullName;
     private String username;
     private String password;
-    private Integer phone;
-    private Integer mobilePhone;
+    private int phone;
+    private int mobilePhone;
     private String street;
     private String area;
     private String city;
@@ -16,7 +16,7 @@ public class User {
     private Boolean agree;
     private String image;
 
-    public User(String fullName, String username, String password, Integer phone, Integer mobilePhone, String street, String area, String city, Boolean newsletter, Boolean hidePhone, Boolean agree, String image) {
+    public User(String fullName, String username, String password, int phone, int mobilePhone, String street, String area, String city, Boolean newsletter, Boolean hidePhone, Boolean agree, String image) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
@@ -55,19 +55,19 @@ public class User {
         this.password = password;
     }
 
-    public Integer getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    public Integer getMobilePhone() {
+    public int getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(Integer mobilePhone) {
+    public void setMobilePhone(int mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
