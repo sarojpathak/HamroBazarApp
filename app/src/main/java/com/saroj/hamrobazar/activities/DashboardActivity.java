@@ -42,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
     private Button btnSignUp;
     ImageView icon;
     Dialog myDialog;
-    String imgPath="";
+//    String imgPath="";
 
 
     @Override
@@ -69,34 +69,6 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-//        loadCurrentUser();
-
-
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<User> userCall = usersAPI.getUserDetails(Url.token);
-
-        userCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                }
-                if (imgPath == "") {
-                    icon.setImageResource(R.drawable.ic_person_black_24dp);
-                } else {
-                    imgPath = Url.imagePath + response.body().getImage();
-
-                    Picasso.get().load(imgPath).into(icon);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(DashboardActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-        });
 
 
         icon = findViewById(R.id.icon);
@@ -169,12 +141,36 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(DashboardActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        loadCurrentUser();
     }
 
-    private void loadCurrentUser() {
+    private void loadCurrentUser(){
+        UsersAPI userLoginAPI = Url.getInstance().create(UsersAPI.class);
+        Call<User> userLoginCall = userLoginAPI.getUserDetails(Url.token);
 
+        userLoginCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(DashboardActivity.this, "Code" + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                String imgPath = Url.imagePath + response.body().getImage();
+
+                Picasso.get().load(imgPath).into(icon);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, "Errors" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
+
+
 
     public void flipperimages(int image) {
         ImageView imageView = new ImageView(this);
