@@ -5,6 +5,8 @@ import com.saroj.hamrobazar.model.User;
 import com.saroj.hamrobazar.serverresponse.ImageResponse;
 import com.saroj.hamrobazar.serverresponse.SignUpResponse;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,5 +21,9 @@ import retrofit2.http.Part;
 public interface ProductAPI {
 
     @GET("products/")
-    Call <Product> getProductDetails();
+    Call <List<Product>> getRecentProduct();
+
+
+//    @GET("products/")
+//    Call <Product> getProductDetails();
 }

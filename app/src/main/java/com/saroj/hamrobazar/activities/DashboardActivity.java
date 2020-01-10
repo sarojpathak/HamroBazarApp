@@ -22,6 +22,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.saroj.hamrobazar.R;
+import com.saroj.hamrobazar.adapter.ProductAdapter;
 import com.saroj.hamrobazar.api.ProductAPI;
 import com.saroj.hamrobazar.api.UsersAPI;
 import com.saroj.hamrobazar.model.Product;
@@ -79,61 +80,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
 
-        final ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
-        final Call<Product> productCall = productAPI.getProductDetails(Url.token);
-        productAPI.equals(new ProductAPI() {
-            @Override
-            public Call<Product> getProductDetails() {
-                List<TreandingAds> treandingAdsList=new ArrayList<>();
-                for(int i=0;i<treandingAdsList.size();i++){
-                    treandingAdsList.add(new TreandingAds(productAPI.notify());
-                }
-            }
-
-
-        });
-
-
-        productCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String imgPath = Url.imagePath +  response.body().getImage();
-
-                Picasso.get().load(imgPath).into(imgProgileImg);
-
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-                Toast.makeText(DashboardActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        recyclerView=findViewById(R.id.recyclerView);
-
-
-
-        TrendingAdsAdapter trendingAdsAdapter=new TrendingAdsAdapter(this,treandingAdsList);
-        recyclerView.setAdapter(trendingAdsAdapter);
-        recyclerView.setLayoutManager(
-                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
-
-        recyclerViewSecond=findViewById(R.id.recyclerViewSecond);
-
-        List<ListedAds> listedAdsList=new ArrayList<>();
-        listedAdsList.add(new ListedAds("Samsung Phone","40000",R.drawable.bike,"Brand New"));
-
-        ListedAdsAdapter listedAdsAdapter=new ListedAdsAdapter(this,listedAdsList);
-        recyclerViewSecond.setAdapter(listedAdsAdapter);
-        recyclerViewSecond.setLayoutManager(
-                (new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)));
-
-
         int images[]={R.drawable.yamaha,R.drawable.car,R.drawable.bike,R.drawable.house,R.drawable.furnitures,R.drawable.music};
 
         vflipper=findViewById(R.id.vflipper);
@@ -144,6 +90,27 @@ public class DashboardActivity extends AppCompatActivity {
         {
             flipperimages(image);
         }
+
+        //recycleview first
+        recyclerView = findViewById(R.id.recyclerView);
+        ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
+        Call<List<Product>> listCall = productAPI.getRecentProduct();
+        listCall.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> product = response.body();
+
+                ProductAdapter productAdapter = new ProductAdapter(DashboardActivity.this, product);
+                recyclerView.setAdapter(productAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loadCurrentUser() {
@@ -172,32 +139,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
-    private void loadAllProduct() {
-
-        ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
-        Call<Product> productCall = productAPI.getProductDetails(Url.token);
-
-        productCall.enqueue(new Callback<Product>() {
-            @Override
-            public void onResponse(Call<Product> call, Response<Product> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String imgPath = Url.imagePath + response.body().getImage();
-
-                Picasso.get().load(imgPath).into(icon);
-
-            }
-
-            @Override
-            public void onFailure(Call<Product> call, Throwable t) {
-                Toast.makeText(DashboardActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
-    }
     public void flipperimages (int image) {
         ImageView imageView = new ImageView(this);
         imageView.setBackgroundResource(image);

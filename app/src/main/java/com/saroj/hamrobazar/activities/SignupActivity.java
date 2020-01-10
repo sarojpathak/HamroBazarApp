@@ -2,9 +2,13 @@ package com.saroj.hamrobazar.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -231,7 +235,7 @@ public class SignupActivity extends AppCompatActivity {
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<SignUpResponse> signUpCall = usersAPI.registerUser(users);
-
+        CheckPermission();
         signUpCall.enqueue(new Callback<SignUpResponse>() {
             @Override
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
@@ -248,5 +252,14 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void CheckPermission()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED ||ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED )
+        {
+            ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+        }
     }
 }
