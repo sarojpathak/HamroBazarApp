@@ -93,6 +93,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         //recycleview first
         recyclerView = findViewById(R.id.recyclerView);
+
+        LinearLayoutManager manager = new LinearLayoutManager(DashboardActivity.this);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
         ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
         Call<List<Product>> listCall = productAPI.getRecentProduct();
         listCall.enqueue(new Callback<List<Product>>() {
@@ -101,6 +105,7 @@ public class DashboardActivity extends AppCompatActivity {
                 List<Product> product = response.body();
 
                 ProductAdapter productAdapter = new ProductAdapter(DashboardActivity.this, product);
+
                 recyclerView.setAdapter(productAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
 

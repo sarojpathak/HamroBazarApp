@@ -7,9 +7,9 @@ public class Product {
     private Integer price;
     private String type;
     private Boolean popular;
-    private String image;
+    private Integer image;
 
-    public Product(String name, Integer price, String type, Boolean popular, String image) {
+    public Product(String name, Integer price, String type, Boolean popular, Integer image) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -49,11 +49,11 @@ public class Product {
         this.popular = popular;
     }
 
-    public String getImage() {
+    public Integer getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Integer image) {
         this.image = image;
     }
 }
