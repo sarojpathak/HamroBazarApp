@@ -42,6 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
     private Button btnSignUp;
     ImageView icon;
     Dialog myDialog;
+    String imgPath="";
 
 
     @Override
@@ -70,6 +71,34 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 //        loadCurrentUser();
 
+
+        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+        Call<User> userCall = usersAPI.getUserDetails(Url.token);
+
+        userCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+                if (imgPath == "") {
+                    icon.setImageResource(R.drawable.ic_person_black_24dp);
+                } else {
+                    imgPath = Url.imagePath + response.body().getImage();
+
+                    Picasso.get().load(imgPath).into(icon);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
         icon = findViewById(R.id.icon);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,14 +109,12 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
 
-        int images[]={R.drawable.yamaha,R.drawable.car,R.drawable.bike,R.drawable.house,R.drawable.furnitures,R.drawable.music};
+        int images[] = {R.drawable.yamaha, R.drawable.car, R.drawable.bike, R.drawable.house, R.drawable.furnitures, R.drawable.music};
 
-        vflipper=findViewById(R.id.vflipper);
+        vflipper = findViewById(R.id.vflipper);
 
 
-
-        for (int image:images)
-        {
+        for (int image : images) {
             flipperimages(image);
         }
 
@@ -96,7 +123,7 @@ public class DashboardActivity extends AppCompatActivity {
         recyclerViewSecond = findViewById(R.id.recyclerViewSecond);
 
         ProductAPI productAPI = Url.getInstance().create(ProductAPI.class);
-        Call<List<Product>> listCall = productAPI.getRecentProduct();
+        Call<List<Product>> listCall = productAPI.getPopularProduct();
         listCall.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -109,9 +136,31 @@ public class DashboardActivity extends AppCompatActivity {
 
                 ProductAdapter productAdapter = new ProductAdapter(DashboardActivity.this, product);
                 recyclerView.setAdapter(productAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
+                recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            }
+
+
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Call<List<Product>> recentCall = productAPI.getRecentProduct();
+        recentCall.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<Product> product = response.body();
+
+                ProductAdapter productAdapter = new ProductAdapter(DashboardActivity.this, product);
                 recyclerViewSecond.setAdapter(productAdapter);
-                recyclerViewSecond.setLayoutManager(new LinearLayoutManager(DashboardActivity.this,LinearLayoutManager.HORIZONTAL, false));
+                recyclerViewSecond.setLayoutManager(new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
             }
 
@@ -124,31 +173,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void loadCurrentUser() {
 
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<User> userCall = usersAPI.getUserDetails(Url.token);
 
-        userCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String imgPath = Url.imagePath + response.body().getImage();
-
-                Picasso.get().load(imgPath).into(icon);
-
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(DashboardActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-        });
     }
 
-    public void flipperimages (int image) {
+    public void flipperimages(int image) {
         ImageView imageView = new ImageView(this);
         imageView.setBackgroundResource(image);
 
