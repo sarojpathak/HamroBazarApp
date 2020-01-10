@@ -16,7 +16,47 @@
             android:id="@+id/txtPost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Accept safety trips" />
+            android:hint="
+Hamrobazar does not allow posting of ads that are considered illegal as per Nepalese law and/or are not permitted as per below Ad posting rules. Any user found violating these rules will be subjected to action/s mentioned below.
+
+1. Multiple (duplicate/repeat) ad posting.
+Users are not allowed to post more than 1 (one) similar active ad. Similar active ad are defined as ads selling or looking for same product or service, even if these ad contain different text or images and/or is posted from same or different account by a user.
+
+Each user is only allowed to post an ad similar to his/her previous ad if the previous one has been marked as sold, has been deleted or has already expired.
+
+2. Misleading and fraudulent ads.
+Some of the ads (but not limited) which fall under this are:
+
+Ads title, price and content must be related. For e.g. posting ad with title Iphone 5 with irrelevant price Rs. 200 is not allowed.
+Ads title should not include Price or Phone numbers, there is separate field for that.
+Ads posted with marketing gimmick words with sole purpose of grabbing other user attention. For e.g. posting ad
+Ads with Inaccurate/wrong prices. You need to clearly mention the price in your ad. For e.g. posting ad with price Rs. 5,000 but when later contacted you are asking another price.
+Ads with Incorrect/wrong item condition mentioned. For e.g. posting used goods as Brand New, not disclosing defectiveness of goods.
+Ads selling stolen and illegal goods.
+Ads selling fake, replica and counterfeited goods by representing them as original.
+Ads with sole purpose of leading user to another website or generate downloads without actual sale of product or service.
+Ads which have Images unrelated with the ad content. Posting graphic (violent or adult oriented) images are not allowed.
+
+3. Mis-categorized (wrong category) ads.
+Ads must be posted in the correct category. For e.g. posting a Bike ad in Mobile category, or office table in Home Furniture category is considered as mis-categorized ad. If you are unsure which category your ads belongs to, kindly search for existing ads to know where other users have posted similar ad. If your ad falls under more than one category, select the best and post your ad only in that category.
+
+4. Posting illegal or morally obscene ads.
+Hamrobazar does not allow ads which are illegal as per Nepal law or are considered morally obscene in context to Nepalese society. Some of the ads (but not limited to) which fall under are:
+Ads for Prostitution, obscene items or any form of adult entertainment ads like escort, indecent massages, pornography, sexual items, etc.
+Ads which hurt the sentiments of any person, group or religion.
+Ads selling illegal items like weapons, drugs, human organs, endangered animals, prohibited antiques, black marketing, etc.
+Ads which infringes other third parties intellectual property, moral right and privacy.
+5. Pyramid, referral marketing and other duping nature ads.
+Any ads (even genuine) which promote scheme which are of pyramid in nature and operate on basis of referrals. Such ads usually ask other user to join a program either to earn money or gift with end purpose of duping the user.
+
+
+Consequences on Violation of Ad Posting Rules.
+Users who violate ad posting rules and site's terms of use may be subjected to any of the following actions, as per seriousness of violation deemed by us:
+        1. Warning from site admin about the violation.
+        2. Deletion of ads with/without prior notice.
+        3. You maybe asked to provide identification documents.
+        4. Temporary or Permanent blocking of account/access to the site.
+        5. Reporting to Law Enforcement agency or Appropriate Authorities." />
 
         <Button
             android:id="@+id/btnPost"
