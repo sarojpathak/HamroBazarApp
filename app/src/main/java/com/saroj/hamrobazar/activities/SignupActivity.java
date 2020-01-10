@@ -54,9 +54,15 @@ public class SignupActivity extends AppCompatActivity {
 
     public static final String city[] = {
              "Kathmandu" ,
-             "New Delhi",
-             "London",
-            "Ottawa"
+             "Pokhara",
+             "Lalitpur",
+             "Biratnagar",
+             "Birganj",
+             "Dharan",
+             "Bharatpur",
+             "Butwal",
+            "Bhim Dutta",
+            "Hetauda"
     };
 
 
@@ -113,7 +119,8 @@ public class SignupActivity extends AppCompatActivity {
     }
     private boolean validate() {
         boolean status=true;
-        if(etEmail.getText().toString().length()==0){
+        if(etEmail.getText().toString().length()==0
+        ){
             etEmail.setError("Enter your email address");
             status=false;
         }

@@ -35,6 +35,7 @@
             android:id="@+id/etEmail"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:inputType="textEmailAddress"
             android:hint="Enter Email"
             />
 
